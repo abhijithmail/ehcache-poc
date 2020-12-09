@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="ehcache-poc" packages="">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p %-30c{1} - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console"/>
+        </Root>
+        <Logger name="com.guidewire.ehcache" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+    </Loggers>
+</Configuration>

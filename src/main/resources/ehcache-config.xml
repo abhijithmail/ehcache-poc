@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ehcache.org/v3"
+        xsi:noNamespaceSchemaLocation="ehcache-core-3.8.xsd">
+    <cache-template name="testCache">
+        <key-type>java.lang.String</key-type>
+        <value-type>java.lang.Integer</value-type>
+        <heap unit="kB">1</heap>
+    </cache-template>
+    <cache alias="myCache" uses-template="testCache" >
+        <listeners dispatcher-thread-pool="">
+            <listener>
+                <class>com.guidewire.ehcache.CacheListener</class>
+                <event-firing-mode>SYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>ORDERED</event-ordering-mode>
+                <events-to-fire-on>UPDATED</events-to-fire-on>
+            </listener>
+            <listener>
+                <class>com.guidewire.ehcache.CacheListener</class>
+                <event-firing-mode>SYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>ORDERED</event-ordering-mode>
+                <events-to-fire-on>CREATED</events-to-fire-on>
+            </listener>
+            <listener>
+                <class>com.guidewire.ehcache.CacheListener</class>
+                <event-firing-mode>SYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>ORDERED</event-ordering-mode>
+                <events-to-fire-on>REMOVED</events-to-fire-on>
+            </listener>
+            <listener>
+                <class>com.guidewire.ehcache.CacheListener</class>
+                <event-firing-mode>SYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>ORDERED</event-ordering-mode>
+                <events-to-fire-on>EVICTED</events-to-fire-on>
+            </listener>
+            <listener>
+                <class>com.guidewire.ehcache.CacheListener</class>
+                <event-firing-mode>SYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>ORDERED</event-ordering-mode>
+                <events-to-fire-on>EXPIRED</events-to-fire-on>
+            </listener>
+        </listeners>
+    </cache>
+</config>
