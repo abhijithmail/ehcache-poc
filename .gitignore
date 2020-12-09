@@ -3,7 +3,10 @@
 
 # IDE folders
 .idea
-target
+*.iml
+target/
+classes/
+
 
 # Log file
 *.log
