@@ -1,4 +1,4 @@
-package com.guidewire.ehcache;
+package com.guidewire.cache.artist;
 
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
@@ -8,40 +8,51 @@ import org.ehcache.xml.XmlConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 
 
 /**
- * Uses configuration in ehcache-config.xml
+ * Uses configuration in artist-cache.xml
+ * POC will assume that the cache is for musical artists.
+ * In practice, there would be a cache for each entity or some better generalized solution.
  * @param <K>
  * @param <V>
  */
 public class CacheHelper<K,V> {
     Logger log = LoggerFactory.getLogger(CacheHelper.class);
     public static final String CACHE_CONFIG_LOCATION_PARAM = "com.guidewire.ehcache.config.location";
-    String cacheConfigLocation = "src/config/ehcache.xml";
+    String cacheConfigLocation;
 
     private CacheManager cacheManager;
-    private final String cacheName;
-    private final Class<K> keyClass;
-    private final Class<V> valueClass;
+    private String cacheName;
+    private Class<K> keyClass;
+    private Class<V> valueClass;
     private long hitCounter;
     private long missCounter;
 
     private boolean isTest;
 
+    private static CacheHelper _INSTANCE;
 
-    public CacheHelper(String pCacheName, Class pKeyType, Class pValueType) {
+    private CacheHelper() {}
+
+    private CacheHelper(String pCacheName, Class pKeyType, Class pValueType) {
         keyClass = pKeyType;
         valueClass = pValueType;
         cacheName = pCacheName;
         cacheConfigLocation = System.getProperty(CACHE_CONFIG_LOCATION_PARAM);
+    }
 
+    public static synchronized CacheHelper getInstance(String pCacheName, Class pKeyType, Class pValueType) {
+        if(_INSTANCE == null) {
+            _INSTANCE = new CacheHelper(pCacheName, pKeyType, pValueType);
+        }
+
+        return _INSTANCE;
     }
 
     public void initXMLConfig() throws Exception {
-        log.debug("initXMLConfig() creating cache.");
+        log.info("initXMLConfig() creating cache with configuration, {}.",cacheConfigLocation);
         try {
             final URL myUrl = getClass().getResource(cacheConfigLocation);
             log.info("initXMLConfig() URL[{}]",myUrl);
@@ -78,12 +89,6 @@ public class CacheHelper<K,V> {
         V rVal = getCache().get(id);
         if(null == rVal) {
             missCounter++;
-            try {
-                rVal = this.valueClass.getDeclaredConstructor(String.class).newInstance("42");
-                getCache().put(id,rVal);
-            } catch (ReflectiveOperationException e) {
-                log.error("error instantiating new cache entry.", e);
-            }
             log.warn("get - {}[{}] - cache miss. Total misses, {}.",this.cacheName,id, missCounter);
         } else {
             hitCounter++;
@@ -96,6 +101,10 @@ public class CacheHelper<K,V> {
             log.debug("put - {}[{}, {}]",this.cacheName,aKey, aValue);
         }
         getCache().put(aKey,aValue);
+    }
+
+    public void remove(K aKey) {
+        getCache().remove(aKey);
     }
 
     public void flush() {

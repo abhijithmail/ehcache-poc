@@ -3,37 +3,38 @@
         xsi:noNamespaceSchemaLocation="ehcache-core-3.8.xsd">
     <cache-template name="testCache">
         <key-type>java.lang.String</key-type>
-        <value-type>java.lang.Integer</value-type>
+        <value-type>com.guidewire.domain.artist.Artist</value-type>
         <heap unit="kB">1</heap>
     </cache-template>
-    <cache alias="myCache" uses-template="testCache" >
+    <cache alias="artistCache" uses-template="testCache" >
+
         <listeners dispatcher-thread-pool="">
             <listener>
-                <class>com.guidewire.ehcache.CacheListener</class>
+                <class>com.guidewire.cache.artist.CacheListener</class>
                 <event-firing-mode>SYNCHRONOUS</event-firing-mode>
                 <event-ordering-mode>ORDERED</event-ordering-mode>
                 <events-to-fire-on>UPDATED</events-to-fire-on>
             </listener>
             <listener>
-                <class>com.guidewire.ehcache.CacheListener</class>
+                <class>com.guidewire.cache.artist.CacheListener</class>
                 <event-firing-mode>SYNCHRONOUS</event-firing-mode>
                 <event-ordering-mode>ORDERED</event-ordering-mode>
                 <events-to-fire-on>CREATED</events-to-fire-on>
             </listener>
             <listener>
-                <class>com.guidewire.ehcache.CacheListener</class>
+                <class>com.guidewire.cache.artist.CacheListener</class>
                 <event-firing-mode>SYNCHRONOUS</event-firing-mode>
                 <event-ordering-mode>ORDERED</event-ordering-mode>
                 <events-to-fire-on>REMOVED</events-to-fire-on>
             </listener>
             <listener>
-                <class>com.guidewire.ehcache.CacheListener</class>
+                <class>com.guidewire.cache.artist.CacheListener</class>
                 <event-firing-mode>SYNCHRONOUS</event-firing-mode>
                 <event-ordering-mode>ORDERED</event-ordering-mode>
                 <events-to-fire-on>EVICTED</events-to-fire-on>
             </listener>
             <listener>
-                <class>com.guidewire.ehcache.CacheListener</class>
+                <class>com.guidewire.cache.artist.CacheListener</class>
                 <event-firing-mode>SYNCHRONOUS</event-firing-mode>
                 <event-ordering-mode>ORDERED</event-ordering-mode>
                 <events-to-fire-on>EXPIRED</events-to-fire-on>

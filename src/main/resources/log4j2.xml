@@ -9,7 +9,19 @@
         <Root level="info">
             <AppenderRef ref="console"/>
         </Root>
-        <Logger name="com.guidewire.ehcache" level="info" additivity="false">
+        <Logger name="com.guidewire.cache" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="com.guidewire.cache.artist.CacheListener" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="com.guidewire.cache.artist.CacheHelper" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="com.guidewire.cache.artist.CacheHelperTestCase" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="com.quidewire.db" level="debug" additivity="false" >
             <AppenderRef ref="console"/>
         </Logger>
     </Loggers>

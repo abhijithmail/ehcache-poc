@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="221.0" y="310.0">com.guidewire.cache.artist.CacheHelper</node>
+    <node x="0.0" y="235.0">org.ehcache.config.builders.CacheManagerBuilder</node>
+    <node x="165.0" y="460.0">com.guidewire.domain.artist.Artist</node>
+    <node x="306.0" y="460.0">org.ehcache.Cache</node>
+    <node x="24.0" y="0.0">org.ehcache.spi.loaderwriter.CacheLoaderWriter</node>
+    <node x="28.0" y="155.0">org.ehcache.CacheManager</node>
+    <node x="265.0" y="235.0">com.guidewire.cache.artist.CacheListener</node>
+    <node x="0.0" y="80.0">com.guidewire.cache.artist.ArtistCacheWriterLoader</node>
+    <node x="173.0" y="385.0">org.ehcache.event.CacheEvent</node>
+    <node x="0.0" y="310.0">org.ehcache.xml.XmlConfiguration</node>
+    <node x="0.0" y="460.0">org.ehcache.event.EventType</node>
+    <node x="245.0" y="155.0">org.ehcache.event.CacheEventListener</node>
+    <node x="0.0" y="385.0">com.quidewire.artist.db.ArtistJDBC</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.guidewire.cache.artist.CacheListener" target="org.ehcache.event.CacheEventListener">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.ehcache.config.builders.CacheManagerBuilder" target="org.ehcache.CacheManager">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.guidewire.cache.artist.ArtistCacheWriterLoader" target="org.ehcache.spi.loaderwriter.CacheLoaderWriter">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="437.5" y="263.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

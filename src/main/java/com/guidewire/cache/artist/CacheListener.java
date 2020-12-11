@@ -1,10 +1,9 @@
-package com.guidewire.ehcache;
+package com.guidewire.cache.artist;
 
 import org.ehcache.event.CacheEvent;
 import org.ehcache.event.EventFiring;
 import org.ehcache.event.EventOrdering;
 import org.ehcache.event.EventType;
-import org.ehcache.event.EventType.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
